@@ -6,12 +6,13 @@
   "scripts": {
     "build": "bun run build:client",
     "build:client": "next build",
-    "check": "biome check --no-errors-on-unmatched **/*",
+    "check": "biome check --apply --no-errors-on-unmatched --files-ignore-unknown=true **/*",
     "commit": "git-cz",
     "dev": "concurrently -n client,server \"bun run dev:client\" \"bun run dev:server\"",
     "dev:client": "next dev -p 2093",
     "dev:server": "bun run --tsconfig-override tsconfig.server.json --hot server/index.ts",
     "format": "biome format --write **/*",
+    "generate:migrations": "drizzle-kit generate:sqlite --schema=./server/db/schema --out=./server/db/migrations",
     "prepare": "husky",
     "release": "semantic-release",
     "start": "concurrently -n client,server \"bun run start:client\" \"bun run start:server\"",
@@ -20,7 +21,7 @@
   },
   "lint-staged": {
     "*": [
-      "biome check --no-errors-on-unmatched"
+      "biome check --no-errors-on-unmatched --files-ignore-unknown=true"
     ]
   },
   "eslintConfig": {
@@ -103,6 +104,7 @@
     "@react-stately/data": "^3.11.0",
     "@zedux/react": "^1.2.0",
     "concurrently": "^8.2.2",
+    "drizzle-orm": "^0.29.4",
     "elysia": "latest",
     "framer-motion": "^11.0.3",
     "http-proxy": "^1.18.1",
@@ -128,6 +130,7 @@
     "bun-types": "latest",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
+    "drizzle-kit": "^0.20.14",
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
     "husky": "^9.0.10",

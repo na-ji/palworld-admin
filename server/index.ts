@@ -1,9 +1,12 @@
 import { Elysia, t } from 'elysia';
 
+import { runMigrations } from './db/client';
 import { logger } from './logger';
 import { players, serverInfo, startAutoUpdates } from './palworldManager';
 import { banPlayer, executeCommand, kickPlayer } from './rcon';
 import { ServerStatus } from './types';
+
+runMigrations();
 
 startAutoUpdates();
 

@@ -36,6 +36,10 @@ services:
     restart: unless-stopped
     ports:
       - "127.0.0.1:3000:2093"
+    volumes:
+      - type: bind
+        source: ./sqlite.db
+        target: /usr/src/app/sqlite.db
     environment:
       - TZ=Europe/Paris
       - RCON_HOST=<palword server container name>
