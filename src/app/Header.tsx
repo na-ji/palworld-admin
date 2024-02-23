@@ -1,8 +1,8 @@
-import { FC } from 'react';
 import { Navbar, NavbarBrand, NavbarContent } from '@nextui-org/react';
+import { FC } from 'react';
 
-import { ThemeSwitcher } from './ThemeSwitcher';
 import { OnlinePlayerCount } from './OnlinePlayerCount';
+import { ThemeSwitcher } from './ThemeSwitcher';
 
 export const Header: FC = () => {
   return (

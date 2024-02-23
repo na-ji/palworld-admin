@@ -1,11 +1,11 @@
 'use client';
+import { AtomGetters, atom, injectAtomGetters, injectEffect, injectStore } from '@zedux/atoms';
 import { FC, useEffect } from 'react';
-import { atom, AtomGetters, injectAtomGetters, injectEffect, injectStore } from '@zedux/atoms';
 
+import { useAtomInstance } from '@zedux/react';
+import isEqual from 'react-fast-compare';
 import type { ServerStatus } from '../../server/types';
 import { getServerStatus } from '../client';
-import isEqual from 'react-fast-compare';
-import { useAtomInstance } from '@zedux/react';
 
 const defaultServerStatus: ServerStatus = {
   onlinePlayers: 0,
@@ -59,7 +59,7 @@ export const InitialServerStatusSetter: FC<{ initialServerStatus: ServerStatus |
     if (initialServerStatus) {
       serverStatusInstance.setState(initialServerStatus);
     }
-  }, [initialServerStatus]);
+  }, [initialServerStatus, serverStatusInstance.setState]);
 
   return null;
 };

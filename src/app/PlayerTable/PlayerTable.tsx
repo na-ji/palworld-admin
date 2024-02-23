@@ -1,23 +1,23 @@
 'use client';
-import { FC, useEffect, useCallback } from 'react';
 import {
-  Table,
-  TableHeader,
-  TableColumn,
-  TableBody,
-  TableRow,
-  TableCell,
-  getKeyValue,
   Spinner,
+  Table,
+  TableBody,
+  TableCell,
+  TableColumn,
+  TableHeader,
+  TableRow,
+  getKeyValue,
 } from '@nextui-org/react';
+import { Chip } from '@nextui-org/react';
 import { useAsyncList } from '@react-stately/data';
 import { SortDescriptor } from '@react-types/shared/src/collections';
-import { Chip } from '@nextui-org/react';
+import { FC, useCallback, useEffect } from 'react';
 
-import { selectPlayerList } from '../ServerStatusProvider';
-import type { Player } from '../../../server/palworldManager';
-import { PlayerAction } from './PlayerAction';
 import { useAtomSelector } from '@zedux/react';
+import type { Player } from '../../../server/palworldManager';
+import { selectPlayerList } from '../ServerStatusProvider';
+import { PlayerAction } from './PlayerAction';
 
 const initialSortDescriptor: SortDescriptor = {
   column: 'name',
@@ -29,7 +29,7 @@ type ColumnKey = keyof Player | 'actions';
 export const PlayerTable: FC = () => {
   const playerList = useAtomSelector(selectPlayerList);
 
-  let list = useAsyncList<Player>({
+  const list = useAsyncList<Player>({
     async load() {
       return {
         items: playerList,
@@ -39,8 +39,8 @@ export const PlayerTable: FC = () => {
       return {
         items: items.sort((playerA, playerB) => {
           const sortColumn = sortDescriptor.column as keyof Player;
-          let firstValue = playerA[sortColumn];
-          let secondValue = playerB[sortColumn];
+          const firstValue = playerA[sortColumn];
+          const secondValue = playerB[sortColumn];
           let comparison = `${firstValue}` < `${secondValue}` ? -1 : 1;
 
           if (sortDescriptor.direction === 'descending') {
@@ -55,8 +55,11 @@ export const PlayerTable: FC = () => {
     initialSortDescriptor,
   });
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: it creates an infinite loop
   useEffect(() => {
-    list.reload();
+    if (playerList) {
+      list.reload();
+    }
   }, [playerList]);
 
   const renderCell = useCallback((player: Player, columnKey: ColumnKey) => {

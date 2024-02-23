@@ -2,11 +2,11 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
 
-import './globals.css';
-import { Providers } from './Providers';
-import { Header } from './Header';
 import { getServerStatus } from '../client';
+import { Header } from './Header';
+import { Providers } from './Providers';
 import { InitialServerStatusSetter } from './ServerStatusProvider';
+import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 

@@ -2,7 +2,7 @@ import { Rcon } from './yamrc';
 
 const rconClient = new Rcon(
   process.env.RCON_HOST || 'localhost',
-  !process.env.RCON_PORT || isNaN(parseInt(process.env.RCON_PORT)) ? 25575 : parseInt(process.env.RCON_PORT),
+  !process.env.RCON_PORT || Number.isNaN(parseInt(process.env.RCON_PORT)) ? 25575 : parseInt(process.env.RCON_PORT),
   process.env.RCON_PASSWORD || 'password',
 );
 

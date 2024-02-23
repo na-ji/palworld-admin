@@ -1,8 +1,8 @@
 import { Elysia, t } from 'elysia';
 
-import { banPlayer, executeCommand, kickPlayer } from './rcon';
 import { logger } from './logger';
 import { players, serverInfo, startAutoUpdates } from './palworldManager';
+import { banPlayer, executeCommand, kickPlayer } from './rcon';
 import { ServerStatus } from './types';
 
 startAutoUpdates();
@@ -16,7 +16,8 @@ const app = new Elysia({ prefix: '/api' })
     const sortedPlayers = Object.values(players).sort((playerA, playerB) => {
       if (playerA.isOnline && !playerB.isOnline) {
         return -1;
-      } else if (!playerA.isOnline && playerB.isOnline) {
+      }
+      if (!playerA.isOnline && playerB.isOnline) {
         return 1;
       }
 

@@ -1,10 +1,10 @@
+import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/react';
 import { FC, Key, useCallback } from 'react';
-import { Button, DropdownTrigger, Dropdown, DropdownMenu, DropdownItem } from '@nextui-org/react';
 
 import type { Player } from '../../../server/palworldManager';
-import { VerticalDotsIcon } from './VerticalDotsIcon';
-import { useConfirmationModal } from '../../components/ConfirmationModal';
 import { banPlayer, kickPlayer } from '../../client';
+import { useConfirmationModal } from '../../components/ConfirmationModal';
+import { VerticalDotsIcon } from './VerticalDotsIcon';
 
 export const PlayerAction: FC<{ player: Player }> = ({ player }) => {
   const { ConfirmationModal, openModal } = useConfirmationModal();
@@ -20,7 +20,7 @@ export const PlayerAction: FC<{ player: Player }> = ({ player }) => {
         }
       });
     },
-    [player.steamId],
+    [player.steamId, openModal],
   );
 
   return (

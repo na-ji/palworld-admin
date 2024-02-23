@@ -42,7 +42,7 @@ export class Rcon {
   private socket: net.Socket;
   private id: number;
   private callbacks: Map<number, (packet: Packet) => void> = new Map();
-  private authenticated: boolean = false;
+  private authenticated = false;
 
   /**
    * Creates an instance of Rcon.
@@ -217,9 +217,9 @@ export class Rcon {
         type: packet.readInt32LE(8),
         payload: packet.toString('ascii', 12, packet.length - 2),
       };
-    } else {
-      throw new Error(`Invalid packet! [${packet}]`);
     }
+
+    throw new Error(`Invalid packet! [${packet}]`);
   }
 
   /**

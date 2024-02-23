@@ -1,7 +1,7 @@
 'use client';
+import { Switch } from '@nextui-org/react';
 import { useTheme } from 'next-themes';
 import { FC, useEffect, useState } from 'react';
-import { Switch } from '@nextui-org/react';
 
 import { MoonIcon } from './MoonIcon';
 import { SunIcon } from './SunIcon';

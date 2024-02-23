@@ -1,6 +1,6 @@
-import { FC, ReactNode, useCallback, useMemo, useState } from 'react';
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from '@nextui-org/react';
+import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from '@nextui-org/react';
 import { UseDisclosureReturn } from '@nextui-org/use-disclosure';
+import { FC, ReactNode, useCallback, useState } from 'react';
 
 interface ConfirmationModalProps {
   children?: ReactNode;
