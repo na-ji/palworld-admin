@@ -1,14 +1,17 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter as FontSans } from 'next/font/google';
 import { ReactNode } from 'react';
 
-import { getServerStatus } from '../client';
-import { Header } from './Header';
+import { getServerStatus } from '@/client';
 import { Providers } from './Providers';
 import { InitialServerStatusSetter } from './ServerStatusProvider';
 import './globals.css';
+import { Header } from './header';
 
-const inter = Inter({ subsets: ['latin'] });
+const fontSans = FontSans({
+  subsets: ['latin'],
+  variable: '--font-sans',
+});
 
 export const metadata: Metadata = {
   title: 'Palworld Admin',
@@ -25,7 +28,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <body className={`min-h-screen bg-background font-sans antialiased ${inter.className}`}>
+      <body className={`min-h-screen bg-background font-sans antialiased ${fontSans.variable}`}>
         <Providers>
           <InitialServerStatusSetter initialServerStatus={initialServerStatus} />
           <div className="relative flex flex-col">
