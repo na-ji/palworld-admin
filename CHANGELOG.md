@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/na-ji/palworld-admin/compare/v1.0.2...v1.1.0) (2024-02-23)
+
+
+### Features
+
+* **server:** persist player list in sqlite database ([f3d0460](https://github.com/na-ji/palworld-admin/commit/f3d0460688d25a5d486e547351ea6ad320377e33))
+
 ## [1.0.2](https://github.com/na-ji/palworld-admin/compare/v1.0.1...v1.0.2) (2024-02-09)
 
 
