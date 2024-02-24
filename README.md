@@ -35,11 +35,10 @@ services:
     image: thenaji27/palworld-admin:latest
     restart: unless-stopped
     ports:
-      - "127.0.0.1:3000:2093"
+      - "127.0.0.1:2093:2093"
     volumes:
-      - type: bind
-        source: ./sqlite.db
-        target: /usr/src/app/sqlite.db
+      - /etc/localtime:/etc/localtime:ro
+      - ./data:/usr/src/app/data
     environment:
       - TZ=Europe/Paris
       - RCON_HOST=<palword server container name>
