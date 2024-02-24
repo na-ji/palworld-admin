@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/na-ji/palworld-admin/compare/v1.1.0...v1.1.1) (2024-02-24)
+
+
+### Bug Fixes
+
+* **docker:** fix sqlite database not mountable on initial run ([58140f2](https://github.com/na-ji/palworld-admin/commit/58140f27f9c1d74ec2e38966a968aecb87db0ede))
+
 # [1.1.0](https://github.com/na-ji/palworld-admin/compare/v1.0.2...v1.1.0) (2024-02-23)
 
 
