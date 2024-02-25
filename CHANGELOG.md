@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/na-ji/palworld-admin/compare/v1.1.1...v1.2.0) (2024-02-25)
+
+
+### Features
+
+* **client:** remake player list with shadcn ([d0d6be9](https://github.com/na-ji/palworld-admin/commit/d0d6be970f87d3e9b18e753ddc772ba17b0cd08b))
+
 ## [1.1.1](https://github.com/na-ji/palworld-admin/compare/v1.1.0...v1.1.1) (2024-02-24)
 
 
