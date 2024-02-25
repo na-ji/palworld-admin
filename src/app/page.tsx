@@ -1,10 +1,14 @@
-import { PlayerTable } from './PlayerTable';
+import { ConfirmationDialogProvider } from '@/components/confirmation-dialog';
+import { H2 } from '@/components/typography/h2';
+import { PlayerTable } from './player-table';
 
 export default function Home() {
   return (
     <>
-      <h2 className="text-4xl">Player List</h2>
-      <PlayerTable />
+      <H2>Player List</H2>
+      <ConfirmationDialogProvider>
+        <PlayerTable />
+      </ConfirmationDialogProvider>
     </>
   );
 }
