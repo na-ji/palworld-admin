@@ -3,7 +3,7 @@ import { FC } from 'react';
 
 import { DataTable } from '@/components/data-table';
 import { useAtomSelector } from '@zedux/react';
-import { selectPlayerList } from '../ServerStatusProvider';
+import { selectPlayerList } from '../server-status-provider';
 import { columns } from './columns';
 
 export const PlayerTable: FC = () => {

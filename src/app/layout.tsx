@@ -4,10 +4,10 @@ import { ReactNode } from 'react';
 
 import { getServerStatus } from '@/client';
 import { Toaster } from '@/components/toaster';
-import { Providers } from './Providers';
-import { InitialServerStatusSetter } from './ServerStatusProvider';
 import './globals.css';
 import { Header } from './header';
+import { Providers } from './providers';
+import { InitialServerStatusSetter } from './server-status-provider';
 
 const fontSans = FontSans({
   subsets: ['latin'],
