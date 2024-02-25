@@ -3,6 +3,7 @@ import { Inter as FontSans } from 'next/font/google';
 import { ReactNode } from 'react';
 
 import { getServerStatus } from '@/client';
+import { Toaster } from '@/components/toaster';
 import { Providers } from './Providers';
 import { InitialServerStatusSetter } from './ServerStatusProvider';
 import './globals.css';
@@ -36,6 +37,7 @@ export default async function RootLayout({
             <main className="px-6 flex gap-4 flex-col pb-16 flex-grow">{children}</main>
           </div>
         </Providers>
+        <Toaster />
       </body>
     </html>
   );
