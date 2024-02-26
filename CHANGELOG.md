@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/na-ji/palworld-admin/compare/v1.2.0...v1.3.0) (2024-02-26)
+
+
+### Features
+
+* add input to broadcast a message to server ([531bdfe](https://github.com/na-ji/palworld-admin/commit/531bdfec72dc6ce5875dbab8ea84f037aa5718fe)), closes [#2](https://github.com/na-ji/palworld-admin/issues/2)
+
 # [1.2.0](https://github.com/na-ji/palworld-admin/compare/v1.1.1...v1.2.0) (2024-02-25)
 
 
