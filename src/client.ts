@@ -8,3 +8,5 @@ export const getServerStatus = () => client.api.status.get();
 export const kickPlayer = (steamId: string) => client.api.kick[steamId].put();
 
 export const banPlayer = (steamId: string) => client.api.ban[steamId].put();
+
+export const broadcast = (message: string) => client.api.broadcast.post({ message });

@@ -11,6 +11,8 @@ access from anywhere to manage my dedicated Palworld server.
 
 - [x] Display the online player list
 - [x] Kick/ban player from the player
+- [x] Broadcast message to all players (with space thanks
+  to [Darkhand81](https://github.com/Darkhand81/Palworld_broadcast_encoding_bug)!)
 
 More to come! See
 the [issues](https://github.com/na-ji/palworld-admin/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc) for the roadmap.

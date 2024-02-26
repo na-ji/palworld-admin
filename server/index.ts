@@ -3,7 +3,7 @@ import { Elysia, t } from 'elysia';
 import { runMigrations } from './db/client';
 import { logger } from './logger';
 import { players, serverInfo, startAutoUpdates } from './palworldManager';
-import { banPlayer, executeCommand, kickPlayer } from './rcon';
+import { banPlayer, broadcast, executeCommand, kickPlayer } from './rcon';
 import { ServerStatus } from './types';
 
 runMigrations();
@@ -42,6 +42,17 @@ const app = new Elysia({ prefix: '/api' })
     {
       body: t.Object({
         command: t.String(),
+      }),
+    },
+  )
+  .post(
+    '/broadcast',
+    async ({ body }) => {
+      return await broadcast(body.message);
+    },
+    {
+      body: t.Object({
+        message: t.String({ maxLength: 54 }),
       }),
     },
   )

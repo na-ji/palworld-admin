@@ -80,6 +80,10 @@ export class Rcon {
       this.socket.on('data', (data) => {
         const packet = this.read(data);
 
+        if (!packet) {
+          return;
+        }
+
         if (packet.id === -1) {
           logger.error('Authentication failed: Wrong password');
           reject('Authentication failed: Wrong password');
@@ -114,7 +118,7 @@ export class Rcon {
    * @returns A promise that resolves with the response from the server.
    * @throws Rejects with an error if authentication is required before sending commands.
    */
-  public async send(command: string): Promise<Packet> {
+  public async send(command: string | Buffer): Promise<Packet> {
     return new Promise((resolve, reject) => {
       // Check if we are authenticated before sending commands
       if (!this.authenticated) {
@@ -186,13 +190,19 @@ export class Rcon {
    * @param body - The content/body of the packet.
    * @returns A buffer containing the formatted packet.
    */
-  private createBuffer(id: number, type: number, body: string) {
-    const bodyBuffer = Buffer.from(body, 'utf8');
+  private createBuffer(id: number, type: number, body: string | Buffer) {
+    let bodyBuffer: Buffer;
+    if (typeof body === 'string') {
+      bodyBuffer = Buffer.from(body, 'utf8');
+    } else {
+      bodyBuffer = body;
+    }
     const buffer = Buffer.alloc(14 + bodyBuffer.length);
     buffer.writeInt32LE(10 + bodyBuffer.length, 0);
     buffer.writeInt32LE(id, 4);
     buffer.writeInt32LE(type, 8);
-    buffer.write(body, 12, 'utf8');
+    buffer.fill(bodyBuffer, 12, 12 + bodyBuffer.length);
+    // buffer.write(body, 12, 'utf8');
     buffer.writeInt8(0, 12 + bodyBuffer.length);
     buffer.writeInt8(0, 13 + bodyBuffer.length);
     return buffer;
@@ -205,21 +215,24 @@ export class Rcon {
    * @throws Error if the packet is invalid.
    * @author github.com/tehbeard
    */
-  private read(packet: Buffer): Packet {
+  private read(packet: Buffer): Packet | undefined {
     // Length of the rest of the packet
     const length = packet.readInt32LE(0);
     // Check if we have a valid packet with 2 null bytes of padding in the end
-    if (packet.length === 4 + length && !packet.readInt16LE(packet.length - 2)) {
-      // Offsets are hardcoded for speed
-      return {
-        length: length,
-        id: packet.readInt32LE(4),
-        type: packet.readInt32LE(8),
-        payload: packet.toString('ascii', 12, packet.length - 2),
-      };
+    if (packet.length !== 4 + length || !!packet.readInt16LE(packet.length - 2)) {
+      // The Broadcast answers are always invalid, so we ignore them
+      if (!packet.toString('utf-8', 12, packet.length - 2).includes('Broadcasted')) {
+        logger.warn(new Error(`Invalid packet from server! [${packet}]`));
+      }
     }
 
-    throw new Error(`Invalid packet! [${packet}]`);
+    // Offsets are hardcoded for speed
+    return {
+      length: length,
+      id: packet.readInt32LE(4),
+      type: packet.readInt32LE(8),
+      payload: packet.toString('utf-8', 12, packet.length - 2),
+    };
   }
 
   /**

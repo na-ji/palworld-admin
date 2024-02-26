@@ -14,7 +14,7 @@ export const getRconClient = async () => {
   return rconClient;
 };
 
-export const executeCommand = async (command: string) => {
+export const executeCommand = async (command: string | Buffer) => {
   const client = await getRconClient();
   return await client.send(command);
 };
@@ -25,6 +25,14 @@ export const banPlayer = async (steamId: string) => {
 
 export const kickPlayer = async (steamId: string) => {
   return await executeCommand(`KickPlayer ${steamId}`);
+};
+
+export const broadcast = async (message: string) => {
+  const commandBuffer = Buffer.from('Broadcast ', 'utf8');
+  const messageBuffer = Buffer.from(message.trim().replaceAll(' ', '\xa0'), 'ascii');
+  const nullTerminationBuffer = Buffer.alloc(2);
+
+  return await executeCommand(Buffer.concat([commandBuffer, messageBuffer, nullTerminationBuffer]));
 };
 
 export interface RconPlayer {

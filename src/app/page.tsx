@@ -1,5 +1,6 @@
 import { ConfirmationDialogProvider } from '@/components/confirmation-dialog';
 import { H2 } from '@/components/typography/h2';
+import { Broadcast } from './broadcast';
 import { PlayerTable } from './player-table';
 
 export default function Home() {
@@ -9,6 +10,8 @@ export default function Home() {
       <ConfirmationDialogProvider>
         <PlayerTable />
       </ConfirmationDialogProvider>
+      <H2>Broadcast</H2>
+      <Broadcast />
     </>
   );
 }
