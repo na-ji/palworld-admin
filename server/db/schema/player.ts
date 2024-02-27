@@ -6,8 +6,8 @@ export const player = sqliteTable('player', {
   steamId: text('steam_id').primaryKey().notNull(),
   name: text('name').notNull(),
   playerUid: text('player_uid').notNull(),
-  createdAt: integer('created_at', { mode: 'timestamp_ms' }).notNull().default(sql`(strftime('%s', 'now'))`),
-  updatedAt: integer('updated_at', { mode: 'timestamp_ms' }).notNull().default(sql`(strftime('%s', 'now'))`),
+  createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`(strftime('%s', 'now'))`),
+  updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().default(sql`(strftime('%s', 'now'))`),
   steamProfile: text('steam_profile', { mode: 'json' }).$type<UserSummary | null>().default(null),
 });
 
