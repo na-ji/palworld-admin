@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/na-ji/palworld-admin/compare/v1.3.0...v1.4.0) (2024-02-27)
+
+
+### Features
+
+* fetch more information about players with steam API ([33d6a88](https://github.com/na-ji/palworld-admin/commit/33d6a8836415c06f47a8187e0c8b1ec4911b3eef))
+
 # [1.3.0](https://github.com/na-ji/palworld-admin/compare/v1.2.0...v1.3.0) (2024-02-26)
 
 
