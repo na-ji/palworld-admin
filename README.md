@@ -39,13 +39,15 @@ services:
     ports:
       - "127.0.0.1:2093:2093"
     volumes:
-      - /etc/localtime:/etc/localtime:ro
       - ./data:/usr/src/app/data
     environment:
       - TZ=Europe/Paris
       - RCON_HOST=<palword server container name>
       - RCON_PORT=25575
       - RCON_PASSWORD=<password>
+      # Optional, if you want to use the Steam API to display more information about the user
+      # Get one at https://steamcommunity.com/dev/apikey
+      - STEAM_API_KEY= <your API key>
 ```
 
 ## Development

@@ -1,9 +1,13 @@
-import { createPlayer, getAllPlayers } from './db/schema/player';
+import type UserSummary from 'steamapi/dist/src/structures/UserSummary';
+
+import { createPlayer, getAllPlayers, setPlayerSteamProfile } from './db/schema/player';
 import { logger } from './logger';
 import { RconPlayer, ServerInfo, getPlayers, getServerInfo } from './rcon';
+import { getSteamUserSummary } from './steam';
 
 export interface Player extends RconPlayer {
   isOnline: boolean;
+  steamProfile?: UserSummary | null;
 }
 
 export const players: Record<string, Player> = {};
@@ -33,9 +37,20 @@ export const updatePlayers = async () => {
     }
 
     players[player.steamId] = {
+      ...players[player.steamId],
       ...player,
       isOnline: true,
     };
+  }
+
+  for (const steamId of Object.keys(players)) {
+    if (!players[steamId].steamProfile) {
+      const steamProfile = await getSteamUserSummary(steamId);
+      if (steamProfile) {
+        await setPlayerSteamProfile(steamId, steamProfile);
+        players[steamId].steamProfile = steamProfile;
+      }
+    }
   }
 };
 

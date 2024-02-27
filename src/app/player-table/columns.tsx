@@ -13,6 +13,25 @@ export const columns: ColumnDef<Player>[] = [
     header: ({ column }) => {
       return <DataTableColumnHeader column={column}>Name</DataTableColumnHeader>;
     },
+    cell: ({ row }) => {
+      const player = row.original;
+
+      return (
+        <a
+          href={`https://steamcommunity.com/profiles/${player.steamId}`}
+          className="flex items-center"
+          target="_blank"
+          rel="noreferrer"
+        >
+          {player.steamProfile && (
+            <span className="relative flex shrink-0 overflow-hidden rounded-full h-9 w-9 mr-2">
+              <img className="aspect-square h-full w-full" alt="Avatar" src={player.steamProfile.avatar.small} />
+            </span>
+          )}
+          {player.name}
+        </a>
+      );
+    },
   },
   {
     accessorKey: 'playerUid',
