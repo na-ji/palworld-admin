@@ -48,6 +48,15 @@ services:
       # Optional, if you want to use the Steam API to display more information about the user
       # Get one at https://steamcommunity.com/dev/apikey
       - STEAM_API_KEY= <your API key>
+      # Optional Discord Auth. Leave empty to disable
+      - AUTH_DISCORD_ID=
+      - AUTH_DISCORD_SECRET=
+      # If auth is enabled, fill this with a secret key
+      - AUTH_SECRET=
+      # To filter users by guilds and roles, fill this
+      - AUTH_BOT_TOKEN=
+      - AUTH_DISCORD_ALLOWED_GUILDS=123,456
+      - AUTH_DISCORD_ALLOWED_ROLES=789,101112
 ```
 
 ## Development
