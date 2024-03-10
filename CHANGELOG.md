@@ -1,3 +1,11 @@
+# [1.5.0](https://github.com/na-ji/palworld-admin/compare/v1.4.0...v1.5.0) (2024-03-10)
+
+
+### Features
+
+* **client:** add auth to the frontend app ([b549486](https://github.com/na-ji/palworld-admin/commit/b549486a64cf49e6b58f7a6f1def0fb2c2e7592d))
+* **client:** add discord avatar to header with logout action ([0743d29](https://github.com/na-ji/palworld-admin/commit/0743d2921a05dc4efe148e87f1b468ef957b8d34))
+
 # [1.4.0](https://github.com/na-ji/palworld-admin/compare/v1.3.0...v1.4.0) (2024-02-27)
 
 
