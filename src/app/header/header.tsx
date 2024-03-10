@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { FC } from 'react';
 
+import { Avatar } from './avatar';
 import { MainNavigation } from './main-navigation';
 import { OnlinePlayerCount } from './online-player-count';
 import { ThemeSwitcher } from './theme-switcher';
@@ -19,6 +20,7 @@ export const Header: FC = () => {
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
           <OnlinePlayerCount />
           <ThemeSwitcher />
+          <Avatar />
         </div>
       </div>
     </header>
