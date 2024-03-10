@@ -1,6 +1,7 @@
 import NextAuth from 'next-auth';
 import Discord from 'next-auth/providers/discord';
 
+import { userHasAccess } from '@/discord';
 const authIsConfigured =
   !!process.env.AUTH_DISCORD_ID && !!process.env.AUTH_DISCORD_SECRET && !!process.env.AUTH_SECRET;
 
@@ -11,7 +12,7 @@ export const { handlers, auth, signOut } = NextAuth({
   trustHost: true,
   callbacks: {
     async signIn({ account, profile }) {
-      return true;
+      return userHasAccess(`${profile?.username}`, account?.access_token, account?.providerAccountId);
     },
     async redirect({ baseUrl }) {
       return baseUrl;
